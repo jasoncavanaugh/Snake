@@ -28,7 +28,7 @@ public class Main {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridBagLayout()); 
 		panel.setBackground(Color.BLACK);
-		this.gb = new Board(15, 15);
+		this.gb = new Board(18, 36); // maximum size for CELL_DIMENSION = 40 is 18, 36
 
 		panel.add(gb);
 		mainFrame.getContentPane().add(panel);

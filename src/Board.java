@@ -16,12 +16,13 @@ public class Board extends JComponent {
 	private static final long serialVersionUID = 1L;
 
 	private static int CELL_DIMENSION = 40;
-	private static int SPEED = 150;
+	private static int SPEED = 125;
+	private static int GROWTH_INCREMENT = 2;
 	private static boolean RAISED_CELL = true;
 
-	private static Color BOARD_COLOR = Color.PINK;
-	private static Color SNAKE_COLOR = Color.RED;
-	private static Color FOOD_COLOR = Color.ORANGE;
+	private static Color BOARD_COLOR = Color.CYAN;
+	private static Color SNAKE_COLOR = Color.BLUE;
+	private static Color FOOD_COLOR = Color.PINK;
 	private static Color WALL_COLOR = Color.DARK_GRAY;
 
 	private Cell[][] board;
@@ -32,7 +33,7 @@ public class Board extends JComponent {
 	private Queue<Cell> snakeQueue;
 
 	public Board(int row, int col) {
-		this.board = new Cell[row + 2][col + 2];
+		this.board = new Cell[col + 2][row + 2];
 		this.snakeQueue = new LinkedList<Cell>();
 
 		super.setPreferredSize(new 
@@ -106,8 +107,8 @@ public class Board extends JComponent {
 	private void insertFood() {
 		do {
 			this.food = 
-					board[(int)(Math.random()*(board[0].length - 2) + 1)]
-							[(int)(Math.random()*(board.length - 2) + 1)];
+					board[(int)(Math.random()*(board.length - 2) + 1)]
+							[(int)(Math.random()*(board[0].length - 2) + 1)];
 		} while (food.getColor() == SNAKE_COLOR);
 		this.food.setColor(FOOD_COLOR);
 		this.needNewFood = false;
@@ -175,7 +176,7 @@ public class Board extends JComponent {
 			over = true;
 		if (board[c][r] == food) {
 			needNewFood = true;
-			snakeSize += 2;
+			snakeSize += GROWTH_INCREMENT;
 		}
 		if (board[c][r].getColor() == SNAKE_COLOR) over = true;
 		board[c][r].setColor(SNAKE_COLOR);
