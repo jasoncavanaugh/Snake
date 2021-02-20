@@ -40,7 +40,7 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new Main();
+				new Main(); //test comment
 			}
 		});
 	}
